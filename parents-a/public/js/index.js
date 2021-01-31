@@ -62,6 +62,8 @@ let loadComponent = function (p) {
 let initSlide1 = function() {
 
     d3.select('#logo').on('click', function() {
+        const music_fond = new sound('sound/fond.mp3', true);
+        music_fond.play();
         loadComponent(2);
         nextSlide('1-1');
     });
@@ -655,12 +657,13 @@ function radar(parc1, parc2, parc3) {
     });
 }
 
-function sound(src) {
+function sound(src, loop) {
     this.sound = document.createElement("audio");
     this.sound.src = src;
     this.sound.setAttribute("preload", "auto");
     this.sound.setAttribute("controls", "none");
     this.sound.style.display = "none";
+    this.sound.loop = loop;
     document.body.appendChild(this.sound);
     this.play = function() {
         this.sound.play();
