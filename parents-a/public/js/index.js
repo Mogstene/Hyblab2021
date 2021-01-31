@@ -353,7 +353,29 @@ let initSlideResultat = function(db) {
         const index = parseInt(d3.event.target.id.split('random')[1]);
         console.log(db);
         getRandomParc(podium, db);
+        d3.select('#parc2-titre').text(function(d) { return podium[podium.length - 1]['Nom formel'] });
         podium[1] = podium[podium.length - 1];
+        chooseimage(podium, div2);
+        new radar(podium[0], podium[1], podium[2]);
+    });
+    d3.select('#random1').on('click', () => {
+        console.log('random 2');
+        const index = parseInt(d3.event.target.id.split('random')[1]);
+        console.log(db);
+        getRandomParc(podium, db);
+        d3.select('#parc1-titre').text(function(d) { return podium[podium.length - 1]['Nom formel'] });
+        podium[2] = podium[podium.length - 1];
+        chooseimage(podium, div1);
+        new radar(podium[0], podium[1], podium[2]);
+    });
+    d3.select('#random3').on('click', () => {
+        console.log('random 3');
+        const index = parseInt(d3.event.target.id.split('random')[1]);
+        console.log(db);
+        getRandomParc(podium, db);
+        d3.select('#parc3-titre').text(function(d) { return podium[podium.length - 1]['Nom formel'] });
+        podium[0] = podium[podium.length - 1];
+        chooseimage(podium, div3);
         new radar(podium[0], podium[1], podium[2]);
     });
     let podium = [data[0], data[1], data[2]]
