@@ -341,8 +341,10 @@ let initSlideResultat = function(db) {
     d3.select('#parc1-titre').text(function(d) { return data[2]['Nom formel']});
     d3.select('#parc2-titre').text(function(d) { return data[1]['Nom formel']});
     d3.select('#parc3-titre').text(function(d) { return data[0]['Nom formel']});
+
     d3.selectAll('.button_retour').on('click', function() {
         nextSlide('10')
+
     });
     radar(data);
 }
