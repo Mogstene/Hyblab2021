@@ -338,14 +338,78 @@ let initSlideResultat = function(db) {
         nextSlide('10', data);
         console.log(data);
     });
-    d3.select('#parc1-titre').text(function(d) { return data[2]['Nom formel']});
-    d3.select('#parc2-titre').text(function(d) { return data[1]['Nom formel']});
-    d3.select('#parc3-titre').text(function(d) { return data[0]['Nom formel']});
+    d3.select('#parc1-titre').text(function(d) { return data[2]['Nom formel'] });
+    d3.select('#parc2-titre').text(function(d) { return data[1]['Nom formel'] });
+    d3.select('#parc3-titre').text(function(d) { return data[0]['Nom formel'] });
     d3.selectAll('.button_retour').on('click', function() {
         nextSlide('10')
     });
+
+    const div1 = document.getElementById("parc1-pr")
+    console.log(div1.id);
+    const img1 = document.createElement("img")
+    const div2 = document.getElementById("parc2-pr")
+    const img2 = document.createElement("img")
+    const div3 = document.getElementById("parc3-pr")
+    const img3 = document.createElement("img")
+    div1.appendChild(img1)
+    console.log(div1.firstChild);
+    chooseimage(data, div1);
+    div2.appendChild(img2);
+    chooseimage(data, div2);
+    div3.appendChild(img3);
+    chooseimage(data, div3);
+
     radar(data);
 }
+
+let im_sources = {
+        "ILE DE VERSAILLES": "img/images_parcs_jardins/ile-de-versailles.jpg",
+        "PLANTES": "img/images_parcs_jardins/jardin-des-plantes.jpg",
+        "BEAULIEU": "img/images_parcs_jardins/parc-de-beaulieu.jpg",
+        "BEAUJOIRE": "img/images_parcs_jardins/parc-de-la-beaujoire.jpg",
+        "CHANTRERIE": "img/images_parcs_jardins/Parc-de-la-Chantrerie.jpg",
+        "PROCE": "img/images_parcs_jardins/Parc-de-proce-Nantes.jpg",
+        "LE OBLATES": "img/images_parcs_jardins/Parc-des-oblates-Nantes.jpg",
+        "BLOTTEREAU": "img/images_parcs_jardins/parc-du-grand-bloterreau.jpg"
+    }
+    // parc 1 data[2]  // parc 2 data[1] // parc 3  data[0]
+
+
+function chooseimage(data, div) {
+    var num = div.id.match(/\d+/g);
+    console.log(num[0]);
+    Object.keys(im_sources).forEach(d => {
+        if (num[0] === "1") {
+            if (data[2]['Nom'] === d) {
+                div.firstChild.src = im_sources[d]
+            }
+
+        }
+        if (num[0] === "2") {
+            if (data[1]['Nom'] === d) {
+                div.firstChild.src = im_sources[d]
+            }
+
+        }
+        if (num[0] === "3") {
+            if (data[0]['Nom'] === d) {
+                div.firstChild.src = im_sources[d]
+            }
+        }
+
+    });
+    if (num[0] === "1" && div.firstChild.src === "" || div.firstChild.src === undefined) {
+        div.firstChild.src = "img/images_parcs_jardins/lambda-1.jpg"
+    }
+    if (num[0] === "2" && div.firstChild.src === "" || div.firstChild.src === undefined) {
+        div.firstChild.src = "img/images_parcs_jardins/lambda-2.jpg"
+    }
+    if (num[0] === "3" && div.firstChild.src === "" || div.firstChild.src === undefined) {
+        div.firstChild.src = "img/images_parcs_jardins/lambda-1.jpg"
+    }
+}
+
 
 
 function radar(data) {
@@ -371,16 +435,16 @@ function radar(data) {
                 }
             ]
         },
-        options : {
-            legend : {
-                display : false,
-                onHover : data['Nom formel']
+        options: {
+            legend: {
+                display: false,
+                onHover: data['Nom formel']
             },
-            title : {
-                display : true,
-                fontSize : 14,
-                fontColor : '#fff',
-                position : 'bottom'
+            title: {
+                display: true,
+                fontSize: 14,
+                fontColor: '#fff',
+                position: 'bottom'
             }
 
         }
@@ -409,16 +473,16 @@ function radar(data) {
         },
 
 
-        options : {
-            legend : {
-                display : false,
-                onHover : data['Nom formel']
+        options: {
+            legend: {
+                display: false,
+                onHover: data['Nom formel']
             },
-            title : {
-                display : true,
-                fontSize : 14,
-                fontColor : '#fff',
-                position : 'bottom'
+            title: {
+                display: true,
+                fontSize: 14,
+                fontColor: '#fff',
+                position: 'bottom'
             }
 
         }
@@ -447,17 +511,17 @@ function radar(data) {
         },
 
 
-        options : {
+        options: {
 
-            legend : {
-                display : false,
-                onHover : data['Nom formel']
+            legend: {
+                display: false,
+                onHover: data['Nom formel']
             },
-            title : {
-                display : true,
-                fontSize : 14,
-                fontColor : '#fff',
-                position : 'bottom'
+            title: {
+                display: true,
+                fontSize: 14,
+                fontColor: '#fff',
+                position: 'bottom'
             }
 
         }
@@ -485,16 +549,16 @@ function radar(data) {
             ]
         },
 
-        options : {
-            legend : {
-                display : false,
-                onHover : data['Nom formel']
+        options: {
+            legend: {
+                display: false,
+                onHover: data['Nom formel']
             },
-            title : {
-                display : true,
-                fontSize : 14,
-                fontColor : '#fff',
-                position : 'bottom'
+            title: {
+                display: true,
+                fontSize: 14,
+                fontColor: '#fff',
+                position: 'bottom'
             }
 
         }
