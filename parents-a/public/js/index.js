@@ -346,52 +346,181 @@ let initSlideResultat = function(db) {
 
 
 function radar(data) {
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myRadarChart = new Chart(ctx, {
-        type: 'radar',
+    var fleurs = document.getElementById('myChart').getContext('2d');
+    var Fleurs = new Chart(fleurs, {
+        type: 'bar',
         data: {
-            labels: ["Nombre d'arbres ", "Nombre d'arbres formidables", 'Diversité des arbres', 'Diversié des fleurs'],
+            labels: ['Diversié des fleurs'],
             datasets: [{
-                    label: data[0]['Nom formel'],
+                    // label: data[0]['Nom formel'],
                     backgroundColor: 'rgba(84,226,136, 0.5)',
-                    data: [data[0]['Nb arbre'], data[0]['Nb arbre formidable'], data[0]['Nb espece arbre'], data[0]['Nb Espece plantes']]
+                    data: [data[0]['Nb Espece plantes']]
                 },
                 {
-                    label: data[1]['Nom formel'],
+                    // label: data[1]['Nom formel'],
                     backgroundColor: 'rgba(84,155,226, 0.5)',
-                    data: [data[1]['Nb arbre'], data[1]['Nb arbre formidable'], data[1]['Nb espece arbre'], data[1]['Nb Espece plantes']],
+                    data: [data[1]['Nb Espece plantes']],
                 },
                 {
-                    label: data[2]['Nom formel'],
+                    // label: data[2]['Nom formel'],
                     backgroundColor: 'rgba(215,17,23, 0.5)',
-                    data: [data[2]['Nb arbre'], data[2]['Nb arbre formidable'], data[2]['Nb espece arbre'], data[2]['Nb Espece plantes']]
+                    data: [data[2]['Nb Espece plantes']]
                 }
             ]
         },
-
-
-        options: {
-            scale: {
-                angleLines: {
-                    display: true
-                },
-                ticks: {
-                    suggestedMin: 50,
-                    suggestedMax: 100
-                }
+        options : {
+            legend : {
+                display : false,
+                onHover : data['Nom formel']
+            },
+            title : {
+                display : true,
+                fontSize : 14,
+                fontColor : '#fff',
+                position : 'bottom',
+                text : "le nombre d'écpece de plante"
             },
             layout: {
                 padding: {
-                    left: 50,
+                    left: 10,
                     right: 0,
                     top: 0,
                     bottom: 0
                 }
             }
-        
 
         }
     });
+    var nbarbre = document.getElementById('myChart1').getContext('2d');
+    var NbArbre = new Chart(nbarbre, {
+        type: 'bar',
+        data: {
+            labels: ["Nombre d'arbres "],
+            datasets: [{
+                    label: data[0]['Nom formel'],
+                    backgroundColor: 'rgba(84,226,136, 0.5)',
+                    data: [data[0]['Nb arbre']]
+                },
+                {
+                    label: data[1]['Nom formel'],
+                    backgroundColor: 'rgba(84,155,226, 0.5)',
+                    data: [data[1]['Nb arbre']],
+                },
+                {
+                    label: data[2]['Nom formel'],
+                    backgroundColor: 'rgba(215,17,23, 0.5)',
+                    data: [data[2]['Nb arbre']]
+                }
+            ]
+        },
+
+
+        options : {
+            legend : {
+                display : false,
+                onHover : data['Nom formel']
+            },
+            title : {
+                display : true,
+                fontSize : 14,
+                fontColor : '#fff',
+                position : 'bottom',
+                text : "le nombre d'écpece de plante"
+            },
+            scales: {
+                xAxes: [{
+                    barPercentage: 0.4
+                }]
+            }
+
+        }
+    });
+    // var arbrefor = document.getElementById('myChart2').getContext('2d');
+    // var DivPlantes = new Chart(divPlantes, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: ["Nombre d'arbres formidables"],
+    //         datasets: [{
+    //                 label: data[0]['Nom formel'],
+    //                 backgroundColor: 'rgba(84,226,136, 0.5)',
+    //                 data: [data[0]['Nb arbre formidable']]
+    //             },
+    //             {
+    //                 label: data[1]['Nom formel'],
+    //                 backgroundColor: 'rgba(84,155,226, 0.5)',
+    //                 data: [data[1]['Nb arbre formidable']],
+    //             },
+    //             {
+    //                 label: data[2]['Nom formel'],
+    //                 backgroundColor: 'rgba(215,17,23, 0.5)',
+    //                 data: [data[2]['Nb arbre formidable']]
+    //             }
+    //         ]
+    //     },
+
+
+    //     options: {
+    //         scale: {
+    //             angleLines: {
+    //                 display: true
+    //             }
+                
+    //         },
+    //         layout: {
+    //             padding: {
+    //                 left: 50,
+    //                 right: 0,
+    //                 top: 0,
+    //                 bottom: 0
+    //             }
+    //         }
+        
+
+    //     }
+    // });
+    // var divArbre = document.getElementById('myChart3').getContext('2d');
+    // var DivArbre = new Chart(divArbre, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: ['Diversité des arbres'],
+    //         datasets: [{
+    //                 label: data[0]['Nom formel'],
+    //                 backgroundColor: 'rgba(84,226,136, 0.5)',
+    //                 data: [data[0]['Diversité des arbres']]
+    //             },
+    //             {
+    //                 label: data[1]['Nom formel'],
+    //                 backgroundColor: 'rgba(84,155,226, 0.5)',
+    //                 data: [data[1]['Diversité des arbres']],
+    //             },
+    //             {
+    //                 label: data[2]['Nom formel'],
+    //                 backgroundColor: 'rgba(215,17,23, 0.5)',
+    //                 data: [data[2]['Diversité des arbres']]
+    //             }
+    //         ]
+    //     },
+
+
+    //     options: {
+    //         scale: {
+    //             angleLines: {
+    //                 display: true
+    //             }
+                
+    //         },
+    //         layout: {
+    //             padding: {
+    //                 left: 50,
+    //                 right: 0,
+    //                 top: 0,
+    //                 bottom: 0
+    //             }
+    //         }
+        
+
+    //     }
+    // });
 }
 
 
