@@ -306,11 +306,8 @@
             <!-- Page de résultats -->
             <section data-slidr="page-resultats">
                 <!-- Test Image de fond -->
-                <button type="button" data-toggle="modal" data-target="#exampleModal">
                 <h3 id="parc3-titre" style="font-family: +Maru+Pop;"></h3>
                 <img src="img/images_parcs_jardins/Parc-des-oblates-Nantes.jpg" alt="parc1" id="parc3-pr">
-                </button>
-
                 <h3 id="parc2-titre"></h3>
                 <img src="img/images_parcs_jardins/jardin-des-plantes.jpg" alt="parc2" id="parc2-pr">
                 <h3 id="parc1-titre"></h3>
@@ -406,21 +403,48 @@
 </body>
 
 <!-- Modal -->
-<div class="modal fade" id="modalResult" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+<div class="modal fade " id="modalResult"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog-centered" role="document">
+        <div class="modal-content bg-warning">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                    <h5 class="modal-title" id="titreModal">Titre</h5>
+                    <i class="fa fa-heart-o"></i>
+                    <button data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
             </div>
             <div class="modal-body">
-            ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <div class="d-flex flex-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Adresse </p>
+                </div>
+
+                <div class="d-flex flex-row">
+                    <i class="fas fa-train"> </i>
+                    <p>Accessibilité</p>
+                </div>
+
+                <div class="d-flex flex-row">
+                    <i class="fas fa-restroom"></i>
+                    <p>Toilettes : </p>
+                    <i class="fas fa-wheelchair"></i>
+                    <p>Pour handicapé : </p>
+                </div>
+
+                <div class="d-flex flex-row">
+                    <i class="fas fa-dog"></i>
+                    <p>Chien autorisé : </p>   
+                </div>
+
+                <div class="d-flex flex-row">
+                    <i><img src="img/page_resultats/table.png" alt="table" id="table"></i>
+                    <p>Table de jardin : </p>   
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
             </div>
         </div>
     </div>
