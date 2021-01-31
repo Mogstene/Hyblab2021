@@ -347,6 +347,7 @@ let initSlideResultat = function(db) {
     d3.selectAll('.button_retour').on('click', function() {
         nextSlide('10')
     });
+
     d3.select('#random2').on('click', () => {
         console.log('random 2');
         const index = parseInt(d3.event.target.id.split('random')[1]);
@@ -357,8 +358,70 @@ let initSlideResultat = function(db) {
     });
     let podium = [data[0], data[1], data[2]]
     new radar(podium[0], podium[1], podium[2]);
+    const div1 = document.getElementById("parc1-pr")
+    console.log(div1.id);
+    const img1 = document.createElement("img")
+    const div2 = document.getElementById("parc2-pr")
+    const img2 = document.createElement("img")
+    const div3 = document.getElementById("parc3-pr")
+    const img3 = document.createElement("img")
+    div1.appendChild(img1)
+    console.log(div1.firstChild);
+    chooseimage(data, div1);
+    div2.appendChild(img2);
+    chooseimage(data, div2);
+    div3.appendChild(img3);
+    chooseimage(data, div3);
 
 }
+
+let im_sources = {
+        "ILE DE VERSAILLES": "img/images_parcs_jardins/ile-de-versailles.jpg",
+        "PLANTES": "img/images_parcs_jardins/jardin-des-plantes.jpg",
+        "BEAULIEU": "img/images_parcs_jardins/parc-de-beaulieu.jpg",
+        "BEAUJOIRE": "img/images_parcs_jardins/parc-de-la-beaujoire.jpg",
+        "CHANTRERIE": "img/images_parcs_jardins/Parc-de-la-Chantrerie.jpg",
+        "PROCE": "img/images_parcs_jardins/Parc-de-proce-Nantes.jpg",
+        "LE OBLATES": "img/images_parcs_jardins/Parc-des-oblates-Nantes.jpg",
+        "BLOTTEREAU": "img/images_parcs_jardins/parc-du-grand-bloterreau.jpg"
+    }
+    // parc 1 data[2]  // parc 2 data[1] // parc 3  data[0]
+
+
+function chooseimage(data, div) {
+    var num = div.id.match(/\d+/g);
+    console.log(num[0]);
+    Object.keys(im_sources).forEach(d => {
+        if (num[0] === "1") {
+            if (data[2]['Nom'] === d) {
+                div.firstChild.src = im_sources[d]
+            }
+
+        }
+        if (num[0] === "2") {
+            if (data[1]['Nom'] === d) {
+                div.firstChild.src = im_sources[d]
+            }
+
+        }
+        if (num[0] === "3") {
+            if (data[0]['Nom'] === d) {
+                div.firstChild.src = im_sources[d]
+            }
+        }
+
+    });
+    if (num[0] === "1" && div.firstChild.src === "" || div.firstChild.src === undefined) {
+        div.firstChild.src = "img/images_parcs_jardins/lambda-1.jpg"
+    }
+    if (num[0] === "2" && div.firstChild.src === "" || div.firstChild.src === undefined) {
+        div.firstChild.src = "img/images_parcs_jardins/lambda-2.jpg"
+    }
+    if (num[0] === "3" && div.firstChild.src === "" || div.firstChild.src === undefined) {
+        div.firstChild.src = "img/images_parcs_jardins/lambda-1.jpg"
+    }
+}
+
 
 
 function radar(parc1, parc2, parc3) {
@@ -430,7 +493,6 @@ function radar(parc1, parc2, parc3) {
         options: {
             legend: {
                 display: false,
-
             },
             title: {
                 display: true,
@@ -467,7 +529,6 @@ function radar(parc1, parc2, parc3) {
 
             legend: {
                 display: false,
-
             },
             title: {
                 display: true,
@@ -504,7 +565,6 @@ function radar(parc1, parc2, parc3) {
         options: {
             legend: {
                 display: false,
-
             },
             title: {
                 display: true,
@@ -515,8 +575,6 @@ function radar(parc1, parc2, parc3) {
 
         }
     });
-
-
 }
 
 initSlide1();
