@@ -2,7 +2,8 @@
 section[data-slidr="page-10"] {
     /* fond */
     position: absolute;
-    background: #171EB1;
+    background: linear-gradient(90.42deg, #0574CF 13.84%, #6FB5EF 76.59%);
+    /* background: linear-gradient(180deg, #181FB2 87%,#6FB5EF 13%);*/
 }
 
 #logo-p10 {
