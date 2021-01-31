@@ -281,10 +281,13 @@ function getRandomInt(max) {
 
 function getRandomParc(target, source) {
     let index = 0;
-    while (target.find(p => p.id === source[index].id)) {
-        index = getRandomInt(source.length);
+
+    while (index < source.length && target.find(p => p.id === source[index].id)) {
+        index++;
     }
-    target.push(source[index]);
+    if (index < source.length)
+        target.push(source[index]);
+    else console.log('not found');
 }
 
 function checkData(d, db, max) {
@@ -338,167 +341,182 @@ let initSlideResultat = function(db) {
         nextSlide('10', data);
         console.log(data);
     });
-    d3.select('#parc1-titre').text(function(d) { return data[2]['Nom formel']});
-    d3.select('#parc2-titre').text(function(d) { return data[1]['Nom formel']});
-    d3.select('#parc3-titre').text(function(d) { return data[0]['Nom formel']});
+    d3.select('#parc1-titre').text(function(d) { return data[2]['Nom formel'] });
+    d3.select('#parc2-titre').text(function(d) { return data[1]['Nom formel'] });
+    d3.select('#parc3-titre').text(function(d) { return data[0]['Nom formel'] });
     d3.selectAll('.button_retour').on('click', function() {
         nextSlide('10')
     });
-    radar(data);
+    d3.select('#random2').on('click', () => {
+        console.log('random 2');
+        const index = parseInt(d3.event.target.id.split('random')[1]);
+        console.log(db);
+        getRandomParc(podium, db);
+        podium[1] = podium[podium.length - 1];
+        new radar(podium[0], podium[1], podium[2]);
+    });
+    let podium = [data[0], data[1], data[2]]
+    new radar(podium[0], podium[1], podium[2]);
+
 }
 
 
-function radar(data) {
+function radar(parc1, parc2, parc3) {
+    /*
+    this.random_1 = parc1;
+    this.random_2 = parc2;
+    this.random_3 = parc3;
+    */
+
     var fleurs = document.getElementById('myChart').getContext('2d');
-    var Fleurs = new Chart(fleurs, {
+    this.Fleurs = new Chart(fleurs, {
         type: 'bar',
         data: {
             labels: ["Nombre d'espèces de fleurs"],
             datasets: [{
-                    // label: data[0]['Nom formel'],
+                    label: parc1['Nom formel'],
                     backgroundColor: 'rgba(226,226,83, 0.5)',
-                    data: [data[0]['Nb Espece plantes']]
+                    data: [parc1['Nb Espece plantes']]
                 },
                 {
-                    // label: data[1]['Nom formel'],
+                    label: parc2['Nom formel'],
                     backgroundColor: 'rgba(227,155,84, 0.5)',
-                    data: [data[1]['Nb Espece plantes']],
+                    data: [parc2['Nb Espece plantes']],
                 },
                 {
-                    // label: data[2]['Nom formel'],
+                    label: parc3['Nom formel'],
                     backgroundColor: 'rgba(215,17,23, 0.5)',
-                    data: [data[2]['Nb Espece plantes']]
+                    data: [parc3['Nb Espece plantes']]
                 }
             ]
         },
-        options : {
-            legend : {
-                display : false,
-                onHover : data['Nom formel']
+        options: {
+            legend: {
+                display: false,
             },
-            title : {
-                display : true,
-                fontSize : 14,
-                fontColor : '#fff',
-                position : 'bottom'
+            title: {
+                display: true,
+                fontSize: 14,
+                fontColor: '#fff',
+                position: 'bottom'
             }
 
         }
     });
     var nbarbre = document.getElementById('myChart1').getContext('2d');
-    var NbArbre = new Chart(nbarbre, {
+    this.NbArbre = new Chart(nbarbre, {
         type: 'bar',
         data: {
             labels: ["Nombre d'arbres "],
             datasets: [{
-                    label: data[0]['Nom formel'],
+                    label: parc1['Nom formel'],
                     backgroundColor: 'rgba(226,226,83, 0.5)',
-                    data: [data[0]['Nb arbre']]
+                    data: [parc1['Nb arbre']]
                 },
                 {
-                    label: data[1]['Nom formel'],
+                    label: parc2['Nom formel'],
                     backgroundColor: 'rgba(227,155,84, 0.5)',
-                    data: [data[1]['Nb arbre']],
+                    data: [parc2['Nb arbre']],
                 },
                 {
-                    label: data[2]['Nom formel'],
+                    label: parc3['Nom formel'],
                     backgroundColor: 'rgba(215,17,23, 0.5)',
-                    data: [data[2]['Nb arbre']]
+                    data: [parc3['Nb arbre']]
                 }
             ]
         },
 
 
-        options : {
-            legend : {
-                display : false,
-                onHover : data['Nom formel']
+        options: {
+            legend: {
+                display: false,
+
             },
-            title : {
-                display : true,
-                fontSize : 14,
-                fontColor : '#fff',
-                position : 'bottom'
+            title: {
+                display: true,
+                fontSize: 14,
+                fontColor: '#fff',
+                position: 'bottom'
             }
 
         }
     });
     var arbreFor = document.getElementById('myChart2').getContext('2d');
-    var ArbreFor = new Chart(arbreFor, {
+    this.ArbreFor = new Chart(arbreFor, {
         type: 'bar',
         data: {
             labels: ["Nombre d'arbres formidables"],
             datasets: [{
-                    label: data[0]['Nom formel'],
+                    label: parc1['Nom formel'],
                     backgroundColor: 'rgba(226,226,83, 0.5)',
-                    data: [data[0]['Nb arbre formidable']]
+                    data: [parc1['Nb arbre formidable']]
                 },
                 {
-                    label: data[1]['Nom formel'],
+                    label: parc2['Nom formel'],
                     backgroundColor: 'rgba(227,155,84, 0.5)',
-                    data: [data[1]['Nb arbre formidable']],
+                    data: [parc2['Nb arbre formidable']],
                 },
                 {
-                    label: data[2]['Nom formel'],
+                    label: parc3['Nom formel'],
                     backgroundColor: 'rgba(215,17,23, 0.5)',
-                    data: [data[2]['Nb arbre formidable']]
+                    data: [parc3['Nb arbre formidable']]
                 }
             ]
         },
+        options: {
 
+            legend: {
+                display: false,
 
-        options : {
-
-            legend : {
-                display : false,
-                onHover : data['Nom formel']
             },
-            title : {
-                display : true,
-                fontSize : 14,
-                fontColor : '#fff',
-                position : 'bottom'
+            title: {
+                display: true,
+                fontSize: 14,
+                fontColor: '#fff',
+                position: 'bottom'
             }
 
         }
     });
     var divArbre = document.getElementById('myChart3').getContext('2d');
-    var DivArbre = new Chart(divArbre, {
+    this.DivArbre = new Chart(divArbre, {
         type: 'bar',
         data: {
             labels: ["Nombre d'écpèce d'arbres"],
             datasets: [{
-                    label: data[0]['Nom formel'],
+                    label: parc1['Nom formel'],
                     backgroundColor: 'rgba(226,226,83, 0.5)',
-                    data: [data[0]['Nb espece arbre']]
+                    data: [parc1['Nb espece arbre']]
                 },
                 {
-                    label: data[1]['Nom formel'],
+                    label: parc2['Nom formel'],
                     backgroundColor: 'rgba(227,155,84, 0.5)',
-                    data: [data[1]['Nb espece arbre']],
+                    data: [parc2['Nb espece arbre']],
                 },
                 {
-                    label: data[2]['Nom formel'],
+                    label: parc3['Nom formel'],
                     backgroundColor: 'rgba(215,17,23, 0.5)',
-                    data: [data[2]['Nb espece arbre']]
+                    data: [parc3['Nb espece arbre']]
                 }
             ]
         },
 
-        options : {
-            legend : {
-                display : false,
-                onHover : data['Nom formel']
+        options: {
+            legend: {
+                display: false,
+
             },
-            title : {
-                display : true,
-                fontSize : 14,
-                fontColor : '#fff',
-                position : 'bottom'
+            title: {
+                display: true,
+                fontSize: 14,
+                fontColor: '#fff',
+                position: 'bottom'
             }
 
         }
     });
+
+
 }
 
 initSlide1();
